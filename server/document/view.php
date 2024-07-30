@@ -6,7 +6,7 @@
     <?php include_once __DIR__ . '/../common/_header.php' ?>
     <main class="main">
         <div class="form_wrap">
-            <form action="">
+            <form class="form" action="">
                 <div class="row_01">
                     <h1>回議用紙</h1>
                     <div class="doc_num">
@@ -44,8 +44,8 @@
                     </ul>
                 </div>
                 <div class="row_05">
-                    <div class="tilte_wrap"></div>
-                    <div class="contents_wrap"></div>
+                    <textarea class="tilte_wrap"></textarea>
+                    <textarea class="contents_wrap"></textarea>
                 </div>
             </form>
         </div>
