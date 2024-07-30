@@ -24,7 +24,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // データを取得するSQL
-            $sql = 'SELECT title, created_at, updated_at FROM doc';
+            $sql = 'SELECT maker, title, created_at FROM doc';
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
@@ -50,7 +50,7 @@
                     <td><input type="checkbox"></td>
                     <td><a href="#"><?= htmlspecialchars($document['title'], ENT_QUOTES, 'UTF-8') ?></a></td>
                     <td><?= htmlspecialchars($document['created_at'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($document['author'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($document['maker'], ENT_QUOTES, 'UTF-8') ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
