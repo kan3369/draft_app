@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+/*コンテンツ全体に対する指定*/
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: 'M PLUS 1p', sans-serif;
+    color: #4D4D4D;
+}
+
+.wrapper {
+    margin: 0;
+    padding: 0 4%;
+}
+
+.page_header {
+    background-color: #000000;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.home_icon {
+    color: #FFFFFF;
+    font-size: 1.8rem;
+}
+
+/* ＝＝＝＝＝main＝＝＝＝＝ */
+.form_wrap {
+    width: 1000px;
+    margin: 0 auto;
+    height: 1415px;
+    /* height: calc(100vh - 60px) */
+}
+
+.form {
+    height: 100%;
+    display: block;
+}
+
+.row_01 {
+    height: 7%;
+}
+
+.row_01 .num,
+.row_01 .date {
+    height: 50%;
+    border: 1px solid #000;
+
+}
+
+.row_02 {
+    height: 7%;
+}
+
+.row_02 .draft_date,
+.row_02 .name {
+    height: 50%;
+}
+
+.row_03 {
+    height: 10%;
+}
+
+.row_04 {
+    height: 15%;
+}
+
+.row_05 {
+    height: 60%;
+}
+
+.row_05 .tilte_wrap {
+    height: 10%;
+}
+
+.row_05 .contents_wrap {
+    height: 90%;
+}
+
+.row_01,
+.row_02,
+.row_03,
+.row_04 .check_list {
+    display: flex;
+}
+
+.draft-name_wrap,
+.stamp_list li,
+.row_03 div,
+.row_04,
+.row_05 .tilte_wrap,
+.row_05 .contents_wrap {
+    border: 1px solid #000;
+}
+
+.row_01 h1,
+.row_01 .doc_num {
+    width: 50%;
+}
+
+.row_02,
+.row_02 .stamp_list {
+    display: flex;
+}
+
+.row_02 .draft-name_wrap,
+.row_02 .stamp_wrap {
+    width: 50%;
+}
+
+.row_02 .stamp_list {
+    justify-content: space-between;
+    height: 100%;
+}
+
+.row_02 .stamp_list span {
+    display: block;
+    text-align: center;
+}
+
+.stamp_list li {
+    width: 25%;
+    height: 100%;
+}
+
+.row_03 .approval,
+.row_03 .send {
+    width: 20%;
+}
+
+.row_03 .abstract {
+    width: 60%;
+}
+
+.row_04 .check_list {
+    flex-wrap: wrap;
+}
+
+.row_04 .check_list li {
+    width: 25%;
+    margin: 0 0 80px;
+}
+
+.row_04 .check_list li span {
+    display: block;
+}
+
+.row_05 textarea {
+    display: block;
+    width: 100%;
+    padding: 20px;
+}
+
+.footer-text {
+    text-align: center;
+    display: block;
+}
