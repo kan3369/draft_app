@@ -44,24 +44,51 @@
                     <th>作成者(内容②) <button class="sort-btn">▼</button></th>
                 </tr>
             </thead>
-            <tbody>
-                <?php foreach ($documents as $document): ?>
+           <tbody>
+            <?php foreach ($documents as $document) : ?>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td><a href="#"><?= htmlspecialchars($document['title'], ENT_QUOTES, 'UTF-8') ?></a></td>
-                    <td><?= htmlspecialchars($document['created_at'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($document['maker'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td></td>
+                    <td><?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
+                    <td>
+                        <!-- 起案ボタン -->
+                        <form action="create.php" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <button type="submit">起案</button>
+                        </form>
+                        <!-- Viewボタン -->
+                        <form action="view.php" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <button type="submit">View</button>
+                        </form>
+                        <!-- 編集ボタン -->
+                        <form action="edit.php" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <button type="submit">編集</button>
+                        </form>
+                        <!-- 削除ボタン -->
+                        <form action="delete.php" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <button type="submit">削除</button>
+                        </form>
+                    </td>
                 </tr>
-                <?php endforeach; ?>
-            </tbody>
+            <?php endforeach; ?>
+        </tbody>
         </table>
-
-        <div class="button-group">
-            <button>起案</button>
-            <button>View</button>
-            <button>編集</button>
-            <button>削除</button>
-        </div>
     </main>
 
     <?php include_once __DIR__ . '/../common/_footer.html'; ?>
