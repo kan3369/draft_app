@@ -50,7 +50,7 @@
         </div>
         <div>
             <label>内容</label>
-            <textarea type="text" name="content" value="起案文書DBから内容取得"></textarea>
+            <textarea type="text" name="contents" value="起案文書DBから内容取得"></textarea>
         </div>
         <div>
             <!-- 確認ボタン -->
