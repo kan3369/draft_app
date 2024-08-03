@@ -1,3 +1,26 @@
+    <?php
+    // データベース接続
+    $host = 'db';
+    $db = 'draft_db';
+    $user = 'draft_admin';
+    $pass = '1234';
+    $documents = [];
+
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // データを取得するSQL
+        $sql = 'SELECT maker, title, created_at FROM doc';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        // 結果を取得
+        $documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo '接続失敗: ' . $e->getMessage();
+    }
+    ?>
 <!DOCTYPE html>
 <html lang="ja">
 <?php include_once __DIR__ . '/../common/_head.html'; ?>
@@ -11,29 +34,7 @@
             <button><i class="fa fa-search"></i></button>
         </div>
 
-        <?php
-        // データベース接続
-        $host = 'db';
-        $db = 'draft_db';
-        $user = 'draft_admin';
-        $pass = '1234';
-        $documents = [];
 
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // データを取得するSQL
-            $sql = 'SELECT maker, title, created_at FROM doc';
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-
-            // 結果を取得
-            $documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            echo '接続失敗: ' . $e->getMessage();
-        }
-        ?>
 
         <table class="document-table">
             <thead>
@@ -57,7 +58,10 @@
         </table>
 
         <div class="button-group">
-            <button>起案</button>
+    <form action="create.php" method="get">
+        <button type="submit">起案</button>
+        <input type="hidden" name="id" value="3">
+    </form>
             <button>View</button>
             <button>編集</button>
             <button>削除</button>
