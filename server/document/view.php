@@ -38,6 +38,10 @@ $contents = filter_input(INPUT_POST, 'contents');
                         </div>
                         <!-- <div class="name">担当者: </div> -->
                         <div class="maker_name">
+                            <label for="maker">部署:</label>
+                            <input class="name" type="text" name="maker" value="<?php echo $maker ?>">
+                            <label for="maker">役職:</label>
+                            <input class="name" type="text" name="maker" value="<?php echo $maker ?>">
                             <label for="maker">担当者:</label>
                             <input class="name" type="text" name="maker" value="<?php echo $maker ?>">
                         </div>

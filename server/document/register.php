@@ -57,7 +57,7 @@ try {
 <body>
     <h1>登録完了</h1>
     <div>
-        <a href="create.php">新しい文書を作成する</a>
+        <a href="index.php">文書一覧を見る</a>
     </div>
 </body>
 
