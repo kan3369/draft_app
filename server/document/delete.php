@@ -1,30 +1,31 @@
 <?php
+require_once __DIR__ . '/../common/functions.php';
+
+$message = ''; // $message 変数を初期化
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $doc_id = $_POST['id'];
+    // POSTリクエストからIDを取得
+    $doc_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-    // データベース接続
-    $host = 'db';
-    $db = 'draft_db';
-    $user = 'draft_admin';
-    $pass = '1234';
-
+    if (!$doc_id) {
+        $message = 'IDが不正です。';
+        exit;
+    }
     try {
-        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $dbh = connect_db();
         // docテーブルからデータを削除するSQL
         $sql = 'DELETE FROM doc WHERE id = :id';
-        $stmt = $pdo->prepare($sql);
+        $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':id', $doc_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        echo "データが正常に削除されました。";
+        $message = "データが正常に削除されました。";
     } catch (PDOException $e) {
-        echo '接続失敗: ' . $e->getMessage();
+        $message = '接続失敗: ' . $e->getMessage();
     }
 } else {
-    echo '不正なアクセスです。';
-    exit;
+    $message = '不正なアクセスです。';
 }
 ?>
 
@@ -37,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <h1>削除結果</h1>
 
-<?php if ($_SERVER['REQUEST_METHOD'] === 'POST') : ?>
+<p><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
+<?php if (isset($doc_id) && $message === "データが正常に削除されました。") : ?>
     <p>ID: <?= htmlspecialchars($doc_id, ENT_QUOTES, 'UTF-8') ?> のデータが削除されました。</p>
 <?php endif; ?>
 
