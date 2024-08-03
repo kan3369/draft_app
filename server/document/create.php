@@ -14,15 +14,27 @@ try {
     //         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $dbh = connect_db();
 
+    
+
     // GETパラメータからIDを取得
-    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    //$id = isset($_GET['id']) ? $_GET['id'] : '';
+    // $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT) ?? 0;
+    $id = filter_input(INPUT_GET, 'id');
+
+    //$id = 1;
     // データを取得するSQL
     $stmt = $dbh->prepare("SELECT * FROM doc WHERE id = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
     $stmt->execute();
 
     // 結果を取得
     $document = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$document) {
+        // ドキュメントが見つからなかった場合の処理
+        $document = ['id' => '', 'title' => '',  'contents' => '','created_at' => '', 'maker' => ''];
+    }
+
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
 }
@@ -40,7 +52,6 @@ try {
 //     echo $maker;
 //     echo "title: " . htmlspecialchars($document['title']);
 //     echo "contents: " . htmlspecialchars($document['contents']);
-
 ?>
 
 
