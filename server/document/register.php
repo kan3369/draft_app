@@ -2,27 +2,49 @@
 require_once __DIR__ . '/../common/functions.php';
 require_once __DIR__ . '/../common/config.php';
 
-/* view.phpから値を受け取る
----------------------------------------------*/
-// 初期化
-$title = '';
+// データベース接続情報
+$dsn = 'mysql:host=db;dbname=draft_db;charset=utf8';
+$username = 'draft_admin';
+$password = '1234';
 
-// リクエストメソッドの判定
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // フォームに入力されたデータを受け取る
-    $title = filter_input(INPUT_POST, 'title');
+try {
+    // データベースに接続
+    $pdo = new PDO($dsn, $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // タスク登録処理の実行
-    insert_doc($title);
+    // フォームから送信されたデータを取得
+    $id = $_POST['id'] ?? null;
+    $doc_num = $_POST['doc_num'] ?? null;
+    $maker = $_POST['maker'] ?? null;
+    var_dump($maker);
+    $title = $_POST['title'] ?? null;
+    $contents = $_POST['contents'] ?? null;
+
+    // データを挿入するSQL文
+    $sql = "INSERT INTO doc (id, doc_num, maker, title, contents) 
+            VALUES (:id, :doc_num, :maker, :title, :contents)";
+
+    // SQL文を準備
+    $stmt = $pdo->prepare($sql);
+
+    // パラメータをバインド
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':doc_num', $doc_num); // doc_numパラメータをバインド
+    $stmt->bindParam(':maker', $maker);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':contents', $contents);
+
+    // SQL文を実行
+    $stmt->execute();
+
+    // 成功メッセージ
+    echo 'データが正常に登録されました。';
+} catch (PDOException $e) {
+    // エラーメッセージ
+    echo 'データベースエラー: ' . $e->getMessage();
 }
-
-
-// DB接続
-
-// SQLで登録
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
