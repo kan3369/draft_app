@@ -10,14 +10,14 @@
                 <div class="row_01">
                     <h1>回議用紙</h1>
                     <div class="doc_num">
-                        <div class="num">文書番号: <?php echo htmlspecialchars($_POST['document_number'] ?? ''); ?></div>
-                        <div class="date">文書の日付: <?php echo htmlspecialchars($_POST['document_date'] ?? ''); ?></div>
+                        <div class="num">文書番号: <?php echo htmlspecialchars($_POST['id'] ?? ''); ?></div>
+                        <div class="date">文書の日付: <?php echo htmlspecialchars($_POST['date'] ?? ''); ?></div>
                     </div>
                 </div>
                 <div class="row_02">
                     <div class="draft-name_wrap">
-                        <div class="draft_date">起案: <?php echo htmlspecialchars($_POST['draft_date'] ?? ''); ?></div>
-                        <div class="name">担当者: <?php echo htmlspecialchars($_POST['name'] ?? ''); ?></div>
+                        <div class="draft_date">起案: <?php echo htmlspecialchars($_POST['created_at'] ?? ''); ?></div>
+                        <div class="name">担当者: <?php echo htmlspecialchars($_POST['selected_name'] ?? ''); ?></div>
                     </div>
                     <div class="stamp_wrap">
                         <ul class="stamp_list">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row_05">
                     <textarea class="title_wrap"><?php echo htmlspecialchars($_POST['title'] ?? ''); ?></textarea>
-                    <textarea class="contents_wrap"><?php echo htmlspecialchars($_POST['content'] ?? ''); ?></textarea>
+                    <textarea class="contents_wrap"><?php echo htmlspecialchars($_POST['contents'] ?? ''); ?></textarea>
                 </div>
                 <div class="link_wrap">
                     <div class="btn"><input type="submit" value="登録" class="upload_submit"></div>

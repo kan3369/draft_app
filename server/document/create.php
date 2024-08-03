@@ -55,23 +55,23 @@ try {
 
 <body>
     <h1>起案文書作成</h1>
-    <!-- <h1>選択されたID: <?php echo htmlspecialchars($_GET['id']); ?></h1> -->
-    <!-- エラーが発生した場合、エラーメッセージを出力 -->
-    <label>起案番号</label>
-    <!-- 現在の年月日を取得して表示 -->
     <form action="view.php" method="post">
+        <!-- <h1>選択されたID:
+        <?php echo htmlspecialchars($_GET['id']); ?></h1> -->
+        <!-- エラーが発生した場合、エラーメッセージを出力 -->
+        <label>起案番号</label>
+        <!-- 現在の年月日を取得して表示 -->
         <?php
         $currentDate = date('Ymd');
         ?>
-        <input type="text" value="<?php echo $currentDate; ?>">
-
+        <input type="text" name="id" value="<?php echo $currentDate; ?>">
         <br>
         <label>文章の日付</label>
         <!-- 現在の年月日を取得して表示 -->
         <?php
         $currentDate = date('Y-m-d');
         ?>
-        <input type="date" value="<?php echo $currentDate; ?>">
+        <input type="date" name="date" value="<?php echo $currentDate; ?>">
         <br>
 
 
@@ -81,7 +81,7 @@ try {
         <?php
         $currentDate = date('Y-m-d');
         ?>
-        <input type="date" value="<?php echo $currentDate; ?>">
+        <input type="date" name="created_at" value="<?php echo $currentDate; ?>">
         <br>
 
 
@@ -108,7 +108,6 @@ try {
             <select name="selected_name">
                 <?php
                 // fetch_data.phpをインクルードしてデータを取得
-
                 include 'fetch_data.php';
                 foreach ($mens as $men) {
                     echo '<option value="' .  htmlspecialchars($men['name']) . '">'  . '</option>';
@@ -119,14 +118,14 @@ try {
         <br>
 
         <label>タイトル</label>
-        <input type="text" value="<?= h($document['title']) ?>">
+        <input type="text" name="title" value="<?= h($document['title']) ?>">
         <br>
 
         <label>内容</label>
-        <input type="text" value="<?= h($document['contents']) ?>">
+        <input type="text" name="contents" value="<?= h($document['contents']) ?>">
         <div>
-        <br>
-        
+            <br>
+
             <!-- 確認ボタン -->
             <button type="submit">OK</button>
         </div>

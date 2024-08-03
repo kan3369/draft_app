@@ -22,3 +22,28 @@ function h($str)
     // ENT_QUOTES: シングルクオートとダブルクオートを共に変換する。
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
+
+// DBに登録
+function insert_doc($title)
+{
+    // データベースに接続
+    $dbh = connect_db();
+
+    // レコードを追加
+    $sql = <<<EOM
+    INSERT INTO
+        doc
+        (title)
+    VALUES
+        (:title)
+    EOM;
+
+    // プリペアドステートメントの準備
+    $stmt = $dbh->prepare($sql);
+
+    // パラメータのバインド
+    $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+
+    // プリペアドステートメントの実行
+    $stmt->execute();
+}

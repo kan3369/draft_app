@@ -1,11 +1,28 @@
-<!-- view.phpから値を受け取る -->
+<?php
+require_once __DIR__ . '/../common/functions.php';
+require_once __DIR__ . '/../common/config.php';
 
-<!-- DB接続 -->
+/* view.phpから値を受け取る
+---------------------------------------------*/
+// 初期化
+$title = '';
 
-<!-- SQLで登録 -->
+// リクエストメソッドの判定
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // フォームに入力されたデータを受け取る
+    $title = filter_input(INPUT_POST, 'title');
+
+    // タスク登録処理の実行
+    insert_doc($title);
+}
 
 
+// DB接続
 
+// SQLで登録
+
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
