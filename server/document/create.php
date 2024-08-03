@@ -10,36 +10,36 @@ $mens = [];
 
 try {
     // データベースに接続
-// $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-//         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbh = connect_db();
+    // $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    //         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh = connect_db();
 
-        // GETパラメータからIDを取得
-        $id = isset($_GET['id']) ? $_GET['id'] : '';
-        // データを取得するSQL
-        $stmt = $dbh->prepare("SELECT * FROM doc WHERE id = :id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
+    // GETパラメータからIDを取得
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    // データを取得するSQL
+    $stmt = $dbh->prepare("SELECT * FROM doc WHERE id = :id");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
 
-        // 結果を取得
-        $document = $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo '接続失敗: ' . $e->getMessage();
-    }
+    // 結果を取得
+    $document = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo '接続失敗: ' . $e->getMessage();
+}
 try {
-        // データを取得するSQL
-        $stmt = $dbh->prepare("SELECT * FROM men");
-        $stmt->execute();
+    // データを取得するSQL
+    $stmt = $dbh->prepare("SELECT * FROM men");
+    $stmt->execute();
 
-        // 結果を取得
-        $mens = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo '接続失敗: ' . $e->getMessage();
-    }
-    // $maker = htmlspecialchars($document['maker']);
-    //     echo $maker;
-    //     echo "title: " . htmlspecialchars($document['title']);
-    //     echo "contents: " . htmlspecialchars($document['contents']);
+    // 結果を取得
+    $mens = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo '接続失敗: ' . $e->getMessage();
+}
+// $maker = htmlspecialchars($document['maker']);
+//     echo $maker;
+//     echo "title: " . htmlspecialchars($document['title']);
+//     echo "contents: " . htmlspecialchars($document['contents']);
 
 ?>
 
@@ -64,28 +64,28 @@ try {
         $currentDate = date('Ymd');
         ?>
         <input type="text" value="<?php echo $currentDate; ?>">
-    </form>
-    <label>文章の日付</label>
-    <form action="" method="post">
+
+        <br>
+        <label>文章の日付</label>
         <!-- 現在の年月日を取得して表示 -->
         <?php
         $currentDate = date('Y-m-d');
         ?>
         <input type="date" value="<?php echo $currentDate; ?>">
 
-    </form>
-    <label>起案</label>
-    <form action="" method="post">
+
+        <label>起案</label>
+
         <!-- 現在の年月日を取得して表示 -->
         <?php
         $currentDate = date('Y-m-d');
         ?>
         <input type="date" value="<?php echo $currentDate; ?>">
 
-    </form>
-    <label>課</label>
-    <!-- 起案文書DBから課を抜き出してプルダウンで表示 -->
-    <form action="" method="post">
+
+        <label>課</label>
+        <!-- 起案文書DBから課を抜き出してプルダウンで表示 -->
+
         <select team="selected_team">
             <?php
             // fetch_data.phpをインクルードしてデータを取得
@@ -95,10 +95,10 @@ try {
             }
             ?>
         </select>
-    </form>
 
-    <label>名前</label>
-    <form action="" method="post">
+
+        <label>名前</label>
+
         <select name="selected_name">
             <?php
             // fetch_data.phpをインクルードしてデータを取得
@@ -108,26 +108,24 @@ try {
             }
             ?>
         </select>
-    </form>
 
-    <label>タイトル</label>
-    <form action="" method="post">
-        <input type="text" value= "<?= h($document['title']) ?>">
-    </form>
-    <label>内容</label>
-    <form action="" method="post">
+
+        <label>タイトル</label>
+
+        <input type="text" value="<?= h($document['title']) ?>">
+
+        <label>内容</label>
+
         <input type="text" value="<?= h($document['contents']) ?>">
-    </form>
 
-    <!-- 確認ボタン -->
-    <form action="view.php" method="get">
+
+        <!-- 確認ボタン -->
+
         <button type="submit">OK</button>
     </form>
 
     <!-- 戻るボタン -->
-    <form action="index.php" method="get">
-        <button type="submit">戻る</button>
-    </form>
+    <a href="index.php">戻る</a>
 </body>
 
 </html>
