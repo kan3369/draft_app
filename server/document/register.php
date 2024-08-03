@@ -1,3 +1,11 @@
+<!-- view.phpから値を受け取る -->
+
+<!-- DB接続 -->
+
+<!-- SQLで登録 -->
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
