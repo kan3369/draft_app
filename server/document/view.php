@@ -6,7 +6,7 @@
     <?php include_once __DIR__ . '/../common/_header.php' ?>
     <main class="main">
         <div class="form_wrap">
-            <form class="form" action="">
+            <form class="form" action="register.php" method="POST">
                 <div class="row_01">
                     <h1>回議用紙</h1>
                     <div class="doc_num">
@@ -46,6 +46,11 @@
                 <div class="row_05">
                     <textarea class="title_wrap"><?php echo htmlspecialchars($_POST['title'] ?? ''); ?></textarea>
                     <textarea class="contents_wrap"><?php echo htmlspecialchars($_POST['content'] ?? ''); ?></textarea>
+                </div>
+                <div class="link_wrap">
+                    <input type="submit" value="登録" class="upload_submit">
+                    <input type="submit" value="PDF化" class="upload_submit">
+                    <a href="/document/create.php">戻る</a>
                 </div>
             </form>
         </div>

@@ -107,21 +107,39 @@ try {
                 echo '<option value="' . htmlspecialchars($men['id']) . '">' . htmlspecialchars($men['name']) . '</option>';
             }
             ?>
-        </select>
-
-
-        <label>タイトル</label>
-
-        <input type="text" value="<?= h($document['title']) ?>">
-
-        <label>内容</label>
-
-        <input type="text" value="<?= h($document['contents']) ?>">
-
-
-        <!-- 確認ボタン -->
-
-        <button type="submit">OK</button>
+            <input type="date" name="document_date" value="<?php echo $currentDate; ?>">
+        </div>
+        <div>
+            <label>起案</label>
+            <!-- 現在の年月日を取得して表示 -->
+            <?php
+            $currentDate = date('Y-m-d');
+            ?>
+            <input type="date" name="draft_date" value="<?php echo $currentDate; ?>">
+        </div>
+        <div>
+            <label>課</label>
+            <!-- 起案文書DBから課を抜き出してプルダウンで表示 -->
+            <input type="text" name="section" value="起案者DBから課取得">
+        </div>
+        <div>
+            <label>名前</label>
+            <input type="text" name="name" value="起案者DBから名前取得">
+        </div>
+        <div>
+            <label>タイトル</label>
+            <input type="text" name="title" value="起案文書DBからタイトル取得">
+        </div>
+        <div>
+            <label>内容</label>
+            <textarea type="text" name="contents" value="起案文書DBから内容取得"></textarea>
+        </div>
+        <div>
+            <!-- 確認ボタン -->
+            <button type="submit">OK</button>
+            <!-- 戻るボタン -->
+            <button type="submit">戻る</button>
+        </div>
     </form>
 
     <!-- 戻るボタン -->
