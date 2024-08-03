@@ -59,13 +59,15 @@ var_dump($documents)
                             </form> -->
                             <a href="create.php?id=<?= htmlspecialchars($document['id']) ?>">起案</a>
                             <!-- Viewボタン -->
-                            <form action="view.php" method="post" style="display:inline;">
+                            <!-- <form action="view.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <button type="submit">View</button>
-                            </form>
+                            </form> -->
+                            <a href="preview.php?id=<?= htmlspecialchars($document['id']) ?>">view</a>
+
                             <!-- 編集ボタン -->
                             <form action="edit.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
