@@ -16,13 +16,15 @@ try {
     $id = $_POST['id'] ?? null;
     $doc_num = $_POST['doc_num'] ?? null;
     $maker = $_POST['maker'] ?? null;
-    var_dump($maker);
+    $team = $_POST['team'] ?? null;
+    $post = $_POST['post'] ?? null;
+    // var_dump($maker);
     $title = $_POST['title'] ?? null;
     $contents = $_POST['contents'] ?? null;
 
     // データを挿入するSQL文
-    $sql = "INSERT INTO doc (id, doc_num, maker, title, contents) 
-            VALUES (:id, :doc_num, :maker, :title, :contents)";
+    $sql = "INSERT INTO doc (id, doc_num, maker, team, post, title, contents) 
+            VALUES (:id, :doc_num, :maker, :team, :post, :title, :contents)";
 
     // SQL文を準備
     $stmt = $pdo->prepare($sql);
@@ -31,6 +33,8 @@ try {
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':doc_num', $doc_num); // doc_numパラメータをバインド
     $stmt->bindParam(':maker', $maker);
+    $stmt->bindParam(':team', $team);
+    $stmt->bindParam(':post', $post);
     $stmt->bindParam(':title', $title);
     $stmt->bindParam(':contents', $contents);
 
@@ -43,6 +47,7 @@ try {
     // エラーメッセージ
     echo 'データベースエラー: ' . $e->getMessage();
 }
+
 ?>
 
 <!DOCTYPE html>

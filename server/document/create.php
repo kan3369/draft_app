@@ -87,15 +87,6 @@ try {
             <?php endforeach; ?>
         </datalist>
         <br>
-        <label>役職</label>
-        <!-- 起案文書DBから課を抜き出してプルダウンで表示 -->
-        <input name="post" list="post">
-        <datalist id="post">
-            <?php foreach ($mens as $men) : ?>
-                <option value="<?= h($men['post']) ?>"><?= h($men['post']) ?></option>
-            <?php endforeach; ?>
-        </datalist>
-        <br>
         <label>名前</label>
         <input name="maker" list="maker">
         <datalist id="maker">
