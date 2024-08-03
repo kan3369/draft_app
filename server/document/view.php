@@ -3,8 +3,9 @@
 $doc_num = filter_input(INPUT_POST, 'doc_num');
 $updated_at = filter_input(INPUT_POST, 'updated_at');
 $created_at = filter_input(INPUT_POST, 'created_at');
-$created_at = filter_input(INPUT_POST, 'created_at');
 $maker = filter_input(INPUT_POST, 'maker');
+$post = filter_input(INPUT_POST, 'post');
+$team = filter_input(INPUT_POST, 'team');
 $title = filter_input(INPUT_POST, 'title');
 $contents = filter_input(INPUT_POST, 'contents');
 ?>
@@ -38,8 +39,18 @@ $contents = filter_input(INPUT_POST, 'contents');
                         </div>
                         <!-- <div class="name">担当者: </div> -->
                         <div class="maker_name">
-                            <label for="maker">担当者:</label>
-                            <input class="name" type="text" name="maker" value="<?php echo $maker ?>">
+                            <p>
+                                <label for="team">部署:</label>
+                                <input class="name" type="text" name="team" value="<?php echo $team ?>">
+                            </p>
+                            <p>
+                                <label for="post">役職:</label>
+                                <input class="name" type="text" name="post" value="<?php echo $post ?>">
+                            </p>
+                            <p>
+                                <label for="maker">担当者:</label>
+                                <input class="name" type="text" name="maker" value="<?php echo $maker ?>">
+                            </p>
                         </div>
                     </div>
                     <div class="stamp_wrap">
