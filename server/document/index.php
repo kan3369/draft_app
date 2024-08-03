@@ -12,7 +12,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // データを取得するSQL
-    $sql = 'SELECT id, maker, title, created_at FROM doc';
+    $sql = 'SELECT id, maker, contents, title, created_at FROM doc';
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -21,6 +21,7 @@ try {
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -51,40 +52,39 @@ try {
                         <td><?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                         <td>
                             <!-- 起案ボタン -->
-                            <!-- <form action="create.php" method="post" style="display:inline;"> -->
-                                <!-- <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <!-- <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <!-- menテーブルからデータを追加 -->
-                                <!-- <input type="hidden" name="maker_id" value="<?= htmlspecialchars($document['maker_id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <!-- <button type="submit">起案</button> -->
-                                <a href="create.php?id=<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">起案</a>
-                            </form>
+                            <!-- <form action="create.php" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                                <button type="submit" >起案</button>
+                                <button type="submit" onclick=location.href="create.php?id=<?= htmlspecialchars($document['id']) ?>">起案</button>
+                            </form> -->
+                            <a href="create.php?id=<?= htmlspecialchars($document['id']) ?>">起案</a>
                             <!-- Viewボタン -->
-                            <form action="view.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <button type="submit">View</button>
-                            </form>
+                            <!-- <form action="view.php" method="post" style="display:inline;"> -->
+                                <!-- <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <button type="submit">View</button> -->
+                            <!-- </form> -->
+                                <a href="View.php?id=<?= htmlspecialchars($document['id']) ?>">View</a>
                             <!-- 編集ボタン -->
-                            <form action="edit.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <button type="submit">編集</button>
-                            </form>
+                            <!-- <form action="edit.php" method="post" style="display:inline;"> -->
+                                <!-- <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <button type="submit">編集</button> -->
+                            <!-- </form> -->
                             <!-- 削除ボタン -->
-                            <form action="delete.php" method="post" style="display:inline;">
+                            <!-- <form action="delete.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <button type="submit">削除</button>
-                            </form>
+                            </form> -->
+                            <!-- <a href="delete.php?id=<?= htmlspecialchars($document['id']) ?>">削除</a> -->
+                            <a href="javascript:void(0);" onclick="confirmDeletion('delete.php?id=<?= htmlspecialchars($document['id'], ENT_QUOTES, 'UTF-8') ?>')">削除</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
