@@ -12,7 +12,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // データを取得するSQL
-    $sql = 'SELECT maker, title, created_at FROM doc';
+    $sql = 'SELECT id, maker, title, created_at FROM doc';
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -51,14 +51,15 @@ try {
                         <td><?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                         <td>
                             <!-- 起案ボタン -->
-                            <form action="create.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                            <!-- <form action="create.php" method="post" style="display:inline;"> -->
+                                <!-- <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
                                 <!-- <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
                                 <!-- menテーブルからデータを追加 -->
                                 <!-- <input type="hidden" name="maker_id" value="<?= htmlspecialchars($document['maker_id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <button type="submit">起案</button>
+                                <!-- <button type="submit">起案</button> -->
+                                <a href="create.php?id=<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">起案</a>
                             </form>
                             <!-- Viewボタン -->
                             <form action="view.php" method="post" style="display:inline;">

@@ -15,7 +15,8 @@ try {
     $dbh = connect_db();
 
     // GETパラメータからIDを取得
-    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    // $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $id = filter_input(INPUT_GET, 'id');
     // データを取得するSQL
     $stmt = $dbh->prepare("SELECT * FROM doc WHERE id = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -26,16 +27,16 @@ try {
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
 }
-try {
+// try {
     // データを取得するSQL
-    $stmt = $dbh->prepare("SELECT * FROM men");
-    $stmt->execute();
+    // $stmt = $dbh->prepare("SELECT * FROM men");
+    // $stmt->execute();
 
     // 結果を取得
-    $mens = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo '接続失敗: ' . $e->getMessage();
-}
+    // $mens = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// } catch (PDOException $e) {
+    // echo '接続失敗: ' . $e->getMessage();
+// }
 // $maker = htmlspecialchars($document['maker']);
 //     echo $maker;
 //     echo "title: " . htmlspecialchars($document['title']);
