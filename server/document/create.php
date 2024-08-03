@@ -106,8 +106,10 @@ try {
                 echo '<option value="' . htmlspecialchars($men['id']) . '">' . htmlspecialchars($men['name']) . '</option>';
             }
             ?>
-            <input type="date" name="document_date" value="<?php echo $currentDate; ?>">
-        </div>
+        <label>タイトル</label>
+        <input type="text" value="<?= h($document['title']) ?>">
+        <label>内容</label>
+        <input type="text" value="<?= h($document['contents']) ?>">
         <div>
             <!-- 確認ボタン -->
             <button type="submit">OK</button>
