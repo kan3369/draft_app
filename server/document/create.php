@@ -59,7 +59,7 @@ try {
     <!-- エラーが発生した場合、エラーメッセージを出力 -->
     <label>起案番号</label>
     <!-- 現在の年月日を取得して表示 -->
-    <form action="" method="post">
+    <form action="view.php" method="post">
         <?php
         $currentDate = date('Ymd');
         ?>
@@ -137,8 +137,6 @@ try {
         <div>
             <!-- 確認ボタン -->
             <button type="submit">OK</button>
-            <!-- 戻るボタン -->
-            <button type="submit">戻る</button>
         </div>
     </form>
 
