@@ -1,4 +1,5 @@
 <?php
+
 // データベース接続
 $host = 'db';
 $db = 'draft_db';
@@ -17,12 +18,6 @@ try {
 
     // 結果を取得
     $documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // menテーブルからデータを取得
-    $sql = 'SELECT id, name, team, post FROM men';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
 }
@@ -58,11 +53,11 @@ try {
                             <!-- 起案ボタン -->
                             <form action="create.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                                <!-- <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
                                 <!-- menテーブルからデータを追加 -->
-                                <input type="hidden" name="maker_id" value="<?= htmlspecialchars($document['maker_id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                                <!-- <input type="hidden" name="maker_id" value="<?= htmlspecialchars($document['maker_id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
                                 <button type="submit">起案</button>
                             </form>
                             <!-- Viewボタン -->
