@@ -48,9 +48,9 @@
                     <textarea class="contents_wrap"><?php echo htmlspecialchars($_POST['content'] ?? ''); ?></textarea>
                 </div>
                 <div class="link_wrap">
-                    <input type="submit" value="登録" class="upload_submit">
-                    <input type="submit" value="PDF化" class="upload_submit">
-                    <a href="/document/create.php">戻る</a>
+                    <div class="btn"><input type="submit" value="登録" class="upload_submit"></div>
+                    <div class="btn"><input type="submit" value="PDF化" class="upload_submit"></div>
+                    <div class="btn"><a href="/document/create.php">戻る</a></div>
                 </div>
             </form>
         </div>
