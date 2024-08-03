@@ -14,7 +14,7 @@ try {
     //         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $dbh = connect_db();
 
-    
+
 
     // GETパラメータからIDを取得
     //$id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -32,9 +32,8 @@ try {
     $document = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$document) {
         // ドキュメントが見つからなかった場合の処理
-        $document = ['id' => '', 'title' => '',  'contents' => '','created_at' => '', 'maker' => ''];
+        $document = ['id' => '', 'title' => '',  'contents' => '', 'created_at' => '', 'maker' => ''];
     }
-
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
 }
