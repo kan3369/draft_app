@@ -15,8 +15,7 @@ try {
     $dbh = connect_db();
 
     // GETパラメータからIDを取得
-    // $id = isset($_GET['id']) ? $_GET['id'] : '';
-    $id = filter_input(INPUT_POST, 'id');
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
     // データを取得するSQL
     $stmt = $dbh->prepare("SELECT * FROM doc WHERE id = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -28,10 +27,11 @@ try {
     echo '接続失敗: ' . $e->getMessage();
 }
 try {
-    // menテーブルからデータを取得
-    $sql = 'SELECT id, name, team, post FROM men';
-    $stmt = $dbh->prepare($sql);
+    // データを取得するSQL
+    $stmt = $dbh->prepare("SELECT * FROM men");
     $stmt->execute();
+
+    // 結果を取得
     $mens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
@@ -72,6 +72,7 @@ try {
         $currentDate = date('Y-m-d');
         ?>
         <input type="date" value="<?php echo $currentDate; ?>">
+        <br>
 
 
         <label>起案</label>
@@ -81,39 +82,51 @@ try {
         $currentDate = date('Y-m-d');
         ?>
         <input type="date" value="<?php echo $currentDate; ?>">
+        <br>
 
 
         <label>課</label>
         <!-- 起案文書DBから課を抜き出してプルダウンで表示 -->
-
-        <select team="selected_team">
-            <?php foreach ($mens as $men) : ?>
-                <option value="<?= h($men['id']) ?>"><?= h($men['team']) ?></option>
-            <?php endforeach; ?>
-        </select>
+        <input name="devision" list="devision_list">
+        <datalist id="devision_list">
+            <select team="selected_team">
+                <?php
+                // fetch_data.phpをインクルードしてデータを取得
+                include 'fetch_data.php';
+                foreach ($mens as $men) {
+                    echo '<option value="' . htmlspecialchars($men['team']) . '">' . '</option>';
+                }
+                ?>
+            </select>
+        </datalist>
+        <br>
 
 
         <label>名前</label>
+        <input name="person" list="person_list">
+        <datalist id="person_list">
+            <select name="selected_name">
+                <?php
+                // fetch_data.phpをインクルードしてデータを取得
 
-        <select name="selected_name">
-            <?php
-            // fetch_data.phpをインクルードしてデータを取得
-            include 'fetch_data.php';
-            foreach ($mens as $men) {
-                echo '<option value="' . htmlspecialchars($men['id']) . '">' . htmlspecialchars($men['name']) . '</option>';
-            }
-            ?>
-            <input type="date" name="document_date" value="<?php echo $currentDate; ?>">
-        </div>
+                include 'fetch_data.php';
+                foreach ($mens as $men) {
+                    echo '<option value="' .  htmlspecialchars($men['name']) . '">'  . '</option>';
+                }
+                ?>
+            </select>
+        </datalist>
+        <br>
+
+        <label>タイトル</label>
+        <input type="text" value="<?= h($document['title']) ?>">
+        <br>
+
+        <label>内容</label>
+        <input type="text" value="<?= h($document['contents']) ?>">
         <div>
-            <label>タイトル</label>
-            <input type="text" name="title" value="起案文書DBからタイトル取得">
-        </div>
-        <div>
-            <label>内容</label>
-            <textarea type="text" name="contents" value="起案文書DBから内容取得"></textarea>
-        </div>
-        <div>
+        <br>
+        
             <!-- 確認ボタン -->
             <button type="submit">OK</button>
         </div>
