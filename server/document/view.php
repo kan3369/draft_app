@@ -1,3 +1,13 @@
+<?php
+
+$doc_num = filter_input(INPUT_POST, 'doc_num');
+$updated_at = filter_input(INPUT_POST, 'updated_at');
+$created_at = filter_input(INPUT_POST, 'created_at');
+$created_at = filter_input(INPUT_POST, 'created_at');
+$maker = filter_input(INPUT_POST, 'maker');
+$title = filter_input(INPUT_POST, 'title');
+$contents = filter_input(INPUT_POST, 'contents');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <?php include_once __DIR__ . '/../common/_head.html' ?>
@@ -10,14 +20,27 @@
                 <div class="row_01">
                     <h1>回議用紙</h1>
                     <div class="doc_num">
-                        <div class="num">文書番号: <?php echo htmlspecialchars($_POST['id'] ?? ''); ?></div>
-                        <div class="date">文書の日付: <?php echo htmlspecialchars($_POST['date'] ?? ''); ?></div>
+                        <div class="num">
+                            <label for="doc_num">文書番号:</label>
+                            <input class="name" type="text" name="doc_num" value="<?php echo $doc_num; ?>">
+                        </div>
+                        <div class="date">
+                            <label for="updated_at">文書の日付:</label>
+                            <input class="name" type="text" name="updated_at" value="<?php echo $updated_at ?>">
+                        </div>
                     </div>
                 </div>
                 <div class="row_02">
                     <div class="draft-name_wrap">
-                        <div class="draft_date">起案: <?php echo htmlspecialchars($_POST['created_at'] ?? ''); ?></div>
-                        <div class="name">担当者: <?php echo htmlspecialchars($_POST['selected_name'] ?? ''); ?></div>
+                        <div class="draft_date">
+                            <label for="created_at">起案:</label>
+                            <input class="name" type="text" name="created_at" value="<?php echo $created_at ?>">
+                        </div>
+                        <!-- <div class="name">担当者: </div> -->
+                        <div class="maker_name">
+                            <label for="maker">担当者:</label>
+                            <input class="name" type="text" name="maker" value="<?php echo $maker ?>">
+                        </div>
                     </div>
                     <div class="stamp_wrap">
                         <ul class="stamp_list">
@@ -44,8 +67,14 @@
                     </ul>
                 </div>
                 <div class="row_05">
-                    <textarea class="title_wrap"><?php echo htmlspecialchars($_POST['title'] ?? ''); ?></textarea>
-                    <textarea class="contents_wrap"><?php echo htmlspecialchars($_POST['contents'] ?? ''); ?></textarea>
+                    <div class="title_wrap">
+                        <label for="title">タイトル</label>
+                        <textarea type="text" name="title"><?php echo $title ?></textarea>
+                    </div>
+                    <div class="contents_wrap">
+                        <label for="contents">内容</label>
+                        <textarea type="text" name="contents"><?php echo $contents ?></textarea>
+                    </div>
                 </div>
                 <div class="link_wrap">
                     <div class="btn"><input type="submit" value="登録" class="upload_submit"></div>
