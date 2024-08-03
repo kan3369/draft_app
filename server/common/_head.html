@@ -1,6 +1,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        function confirmDeletion(url) {
+            if (confirm('本当に削除してよろしいですか？')) {
+                location.href = url;
+            }
+        }
+    </script>
+
     <title>起案サポートシステム</title>
     <!-- CSS -->
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
