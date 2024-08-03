@@ -15,7 +15,8 @@ try {
     $dbh = connect_db();
 
     // GETパラメータからIDを取得
-    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    // $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $id = filter_input(INPUT_POST, 'id');
     // データを取得するSQL
     $stmt = $dbh->prepare("SELECT * FROM doc WHERE id = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -27,11 +28,10 @@ try {
     echo '接続失敗: ' . $e->getMessage();
 }
 try {
-    // データを取得するSQL
-    $stmt = $dbh->prepare("SELECT * FROM men");
+    // menテーブルからデータを取得
+    $sql = 'SELECT id, name, team, post FROM men';
+    $stmt = $dbh->prepare($sql);
     $stmt->execute();
-
-    // 結果を取得
     $mens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
@@ -87,13 +87,9 @@ try {
         <!-- 起案文書DBから課を抜き出してプルダウンで表示 -->
 
         <select team="selected_team">
-            <?php
-            // fetch_data.phpをインクルードしてデータを取得
-            include 'fetch_data.php';
-            foreach ($mens as $men) {
-                echo '<option value="' . htmlspecialchars($men['id']) . '">' . htmlspecialchars($men['team']) . '</option>';
-            }
-            ?>
+            <?php foreach ($mens as $men) : ?>
+                <option value="<?= h($men['id']) ?>"><?= h($men['team']) ?></option>
+            <?php endforeach; ?>
         </select>
 
 
@@ -108,23 +104,6 @@ try {
             }
             ?>
             <input type="date" name="document_date" value="<?php echo $currentDate; ?>">
-        </div>
-        <div>
-            <label>起案</label>
-            <!-- 現在の年月日を取得して表示 -->
-            <?php
-            $currentDate = date('Y-m-d');
-            ?>
-            <input type="date" name="draft_date" value="<?php echo $currentDate; ?>">
-        </div>
-        <div>
-            <label>課</label>
-            <!-- 起案文書DBから課を抜き出してプルダウンで表示 -->
-            <input type="text" name="section" value="起案者DBから課取得">
-        </div>
-        <div>
-            <label>名前</label>
-            <input type="text" name="name" value="起案者DBから名前取得">
         </div>
         <div>
             <label>タイトル</label>
