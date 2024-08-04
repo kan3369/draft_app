@@ -58,7 +58,7 @@ body {
 .row_01 .date {
     height: 50%;
     border: 1px solid #000;
-
+    padding: 2px 10px;
 }
 
 .row_02 {
@@ -119,6 +119,10 @@ body {
     width: 50%;
 }
 
+.row_02 .draft-name_wrap {
+    padding: 5px 0 0 10px;
+}
+
 .row_02 .stamp_list {
     justify-content: space-between;
     height: 100%;
@@ -137,14 +141,17 @@ body {
 .row_03 .approval,
 .row_03 .send {
     width: 20%;
+    padding: 5px 10px;
 }
 
 .row_03 .abstract {
     width: 60%;
+    padding: 5px 10px;
 }
 
 .row_04 .check_list {
     flex-wrap: wrap;
+    padding: 5px 10px;
 }
 
 .row_04 .check_list li {
@@ -159,6 +166,7 @@ body {
 .row_05 textarea {
     display: block;
     width: 100%;
+    line-height: 32px;
 }
 
 .link_wrap {
@@ -196,11 +204,13 @@ body {
 .title_fz {
     font-size: 24px;
 }
+
 @media print {
-	.no-print {
-		display: none;
-	}
+    .no-print {
+        display: none;
+    }
 }
+
 /* ===================
 create.php
 =================== */
@@ -233,7 +243,8 @@ body.create_body {
 
 .create_body input[type="text"],
 .create_body input[type="date"],
-.create_body input[list] {
+.create_body input[list],
+.create_body textarea {
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -265,4 +276,42 @@ body.create_body {
 
 .create_body .back_btn:hover {
     text-decoration: underline;
+}
+
+/* ===================
+register.php
+=================== */
+.register_body {
+    position: relative;
+    height: 100vh;
+}
+
+.register_body main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    text-align: center;
+    background-color: #eee;
+}
+
+.register_body .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.register_body .back_btn a {
+    text-decoration: none;
+    background-color: #218838;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 20px;
+}
+
+.register_body .back_btn {
+    margin: 20px 0 0 0;
 }

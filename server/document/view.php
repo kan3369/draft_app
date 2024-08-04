@@ -80,11 +80,12 @@ $contents = filter_input(INPUT_POST, 'contents');
                     <div class="row_05">
                         <div class="title_wrap">
                             <label for="title">タイトル</label>
-                            <textarea class="title_fz" type="text" name="title"><?php echo $title ?></textarea>
+                            <textarea class="title_fz" type="text" name="title" rows="1" cols="20"><?php echo $title ?></textarea>
                         </div>
                         <div class="contents_wrap">
                             <label for="contents">内容</label>
-                            <textarea type="text" name="contents"><?php echo $contents ?></textarea>
+                            <!-- <textarea type="text" name="contents"><?php echo $contents ?></textarea> -->
+                            <textarea id="message" name="contents" rows="19" cols="300"><?php echo $contents ?></textarea>
                         </div>
                     </div>
                 </div>
