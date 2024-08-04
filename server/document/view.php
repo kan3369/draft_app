@@ -13,7 +13,7 @@ $contents = filter_input(INPUT_POST, 'contents');
 <html lang="ja">
 <?php include_once __DIR__ . '/../common/_head.html' ?>
 
-<body>
+<body class="view_body">
     <?php include_once __DIR__ . '/../common/_header.php' ?>
     <main class="main">
         <div class="form_wrap">
