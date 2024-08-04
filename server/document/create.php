@@ -85,7 +85,7 @@ try {
                 <input type="text" name="title" value="<?= htmlspecialchars($document['title']) ?>">
 
                 <label>内容</label>
-                <textarea id="message" name="contents" rows="20" cols="200" value="<?= htmlspecialchars($document['contents']) ?>"></textarea>
+                <textarea id="message" name="contents" rows="20" cols="50" value="<?= htmlspecialchars($document['contents']) ?>"><?= htmlspecialchars($document['contents']) ?></textarea>
                 <button type="submit">OK</button>
             </form>
             <a class="back_btn" href="index.php">戻る</a>
