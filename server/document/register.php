@@ -42,7 +42,7 @@ try {
     $stmt->execute();
 
     // 成功メッセージ
-    echo 'データが正常に登録されました。';
+    // echo 'データが正常に登録されました。';
 } catch (PDOException $e) {
     // エラーメッセージ
     echo 'データベースエラー: ' . $e->getMessage();
@@ -52,18 +52,17 @@ try {
 
 <!DOCTYPE html>
 <html lang="ja">
+<?php include_once __DIR__ . '/../common/_head.html' ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登録完了</title>
-</head>
-
-<body>
-    <h1>登録完了</h1>
-    <div>
-        <a href="index.php">文書一覧を見る</a>
-    </div>
+<body class="register_body">
+    <main>
+        <div class="inner">
+            <h1>登録完了</h1>
+            <div class="back_btn">
+                <a href="index.php">文書一覧を見る</a>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
