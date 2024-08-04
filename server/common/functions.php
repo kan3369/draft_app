@@ -23,26 +23,22 @@ function h($str)
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-
-function delete_doc_by_id($id)
+function find_doc_by_id($id)
 {
-    try {
-        $dbh = connect_db();
+    $dbh = connect_db();
 
-        $sql = <<<EOM
-        DELETE 
-            FROM 
-        photos 
-            WHERE 
+    $sql = <<<EOM
+    SELECT 
+        * 
+    FROM 
+        doc 
+    WHERE 
         id = :id;
-        EOM;
+    EOM;
+    
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
 
-        $stmt = $dbh->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return true;
-    } catch (PDOException $e) {
-        return false;
-    }
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
