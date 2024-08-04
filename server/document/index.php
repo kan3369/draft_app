@@ -1,4 +1,3 @@
-
 <?php
 // データベース接続
 $host = 'db';
@@ -21,131 +20,31 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <?php include_once __DIR__ . '/../common/_head.html'; ?>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .main.wrapper {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .header-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .user-register {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .user-register:hover {
-            background-color: #218838;
-        }
-        .search-bar {
-            display: flex;
-            align-items: center;
-        }
-        .search-bar input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-        .search-bar button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .search-bar button:hover {
-            background-color: #0056b3;
-        }
-        .document-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        .document-table th, .document-table td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        .document-table th {
-            background-color: #f8f8f8;
-        }
-        .document-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .document-table tr:hover {
-            background-color: #e9e9e9;
-        }
-        .sort-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 12px;
-            color: #007bff;
-        }
-        .sort-btn:hover {
-            color: #0056b3;
-        }
-        .action-buttons a {
-            padding: 5px 10px;
-            margin-right: 5px;
-            border-radius: 4px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 12px;
-        }
-        .action-buttons .create-btn {
-            background-color: #007bff;
-        }
-        .action-buttons .view-btn {
-            background-color: #28a745;
-        }
-        .action-buttons .delete-btn {
-            background-color: #dc3545;
-        }
-        .action-buttons a:hover {
-            opacity: 0.8;
-        }
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
-            const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-                v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-            )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-            document.querySelectorAll('.document-table th').forEach(th => th.addEventListener('click', (() => {
-                const table = th.closest('table');
-                Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
-                    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-                    .forEach(tr => table.appendChild(tr) );
-            })));
-        });
-    </script>
-</head>
-<body>
+
+<?php include_once __DIR__ . '/../common/_head.html'; ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+        const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+            v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+        )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+        document.querySelectorAll('.document-table th').forEach(th => th.addEventListener('click', (() => {
+            const table = th.closest('table');
+            Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+                .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+                .forEach(tr => table.appendChild(tr));
+        })));
+    });
+</script>
+
+<body class="index_body">
     <?php include_once __DIR__ . '/../common/_header.php'; ?>
     <main class="main wrapper">
         <div class="header-buttons">
-            <a href="/users/signup.php" class="user-register">ユーザ登録</a>
+            <div class="btn_wrap">
+                <a href="/users/signup.php" class="user-register">ユーザ登録</a>
+                <a class="new_add" href="/document/create.php" class="user-register">起案の新規登録</a>
+            </div>
             <div class="search-bar">
                 <input type="text" placeholder="文字検索">
                 <button><i class="fa fa-search"></i></button>
@@ -178,5 +77,5 @@ try {
     </main>
     <?php include_once __DIR__ . '/../common/_footer.html'; ?>
 </body>
-</html>
 
+</html>
