@@ -51,11 +51,11 @@ $doc = find_doc_by_id($id);
                         <div class="doc_num">
                             <div class="num">
                                 <label for="doc_num">文書番号:</label>
-                                <input class="name" type="text" name="doc_num" value="<?= h($doc['doc_num']); ?>">
+                                <input class="name" type="text" name="doc_num" value="<?= h($doc['doc_num']); ?>" readonly>
                             </div>
                             <div class="date">
                                 <label for="updated_at">文書の日付:</label>
-                                <input class="name" type="text" name="updated_at" value="<?= h($doc['updated_at']); ?>">
+                                <input class="name" type="text" name="updated_at" value="<?= h($doc['updated_at']); ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -63,21 +63,21 @@ $doc = find_doc_by_id($id);
                         <div class="draft-name_wrap">
                             <div class="draft_date">
                                 <label for="created_at">起案:</label>
-                                <input class="name" type="text" name="created_at" value="<?= h($doc['created_at']); ?>">
+                                <input class="name" type="text" name="created_at" value="<?= h($doc['created_at']); ?>" readonly>
                             </div>
                             <!-- <div class="name">担当者: </div> -->
                             <div class="maker_name">
                                 <p>
                                     <label for="team">部署:</label>
-                                    <input class="name" type="text" name="team" value="<?= h($doc['team']); ?>">
+                                    <input class="name" type="text" name="team" value="<?= h($doc['team']); ?>" readonly>
                                 </p>
                                 <p>
                                     <label for="post">役職:</label>
-                                    <input class="name" type="text" name="post" value="<?= h($doc['post']); ?>">
+                                    <input class="name" type="text" name="post" value="<?= h($doc['post']); ?>" readonly>
                                 </p>
                                 <p>
                                     <label for="maker">担当者:</label>
-                                    <input class="name" type="text" name="maker" value="<?= h($doc['maker']); ?>">
+                                    <input class="name" type="text" name="maker" value="<?= h($doc['maker']); ?>" readonly>
                                 </p>
                             </div>
                         </div>
@@ -108,11 +108,11 @@ $doc = find_doc_by_id($id);
                     <div class="row_05">
                         <div class="title_wrap">
                             <label for="title">タイトル</label>
-                            <textarea class="title_fz" type="text" name="title" rows="1" cols="20"><?= h($doc['title']); ?></textarea>
+                            <textarea class="title_fz" type="text" name="title" rows="1" cols="20" readonly><?= h($doc['title']); ?></textarea>
                         </div>
                         <div class="contents_wrap">
                             <label for="contents">内容</label>
-                            <textarea id="message" name="contents" rows="19" cols="300"><?= h($doc['contents']); ?></textarea>
+                            <textarea id="message" name="contents" rows="19" cols="300" readonly><?= h($doc['contents']); ?></textarea>
                         </div>
                     </div>
                 </div>
