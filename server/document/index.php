@@ -25,11 +25,90 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-<?php include_once __DIR__ . '/../common/_head.html'; ?>
+<head>
+    <?php include_once __DIR__ . '/../common/_head.html'; ?>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
+        .main.wrapper {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+        .document-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .document-table th, .document-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .document-table th {
+            background-color: #f8f8f8;
+        }
+
+        .document-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .document-table tr:hover {
+            background-color: #e9e9e9;
+        }
+
+        .sort-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            color: #007bff;
+        }
+
+        .sort-btn:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
 <body>
     <?php include_once __DIR__ . '/../common/_header.php'; ?>
-    <main class="article wrapper">
+    <main class="main wrapper">
         <div class="search-bar">
             <input type="text" placeholder="文字検索">
             <button><i class="fa fa-search"></i></button>
@@ -38,9 +117,10 @@ try {
             <thead>
                 <tr>
                     <th></th>
-                    <th>タイトル(内容③) <button class="sort-btn">▼</button></th>
-                    <th>作成日(内容②) <button class="sort-btn">▼</button></th>
-                    <th>作成者(内容②) <button class="sort-btn">▼</button></th>
+                    <th>タイトル <button class="sort-btn">▼</button></th>
+                    <th>作成日 <button class="sort-btn">▼</button></th>
+                    <th>作成者 <button class="sort-btn">▼</button></th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,47 +131,15 @@ try {
                         <td><?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                         <td><?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                         <td>
-                            <!-- 起案ボタン -->
-                            <!-- <form action="create.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <button type="submit" >起案</button>
-                                <button type="submit" onclick=location.href="create.php?id=<?= htmlspecialchars($document['id']) ?>">起案</button>
-                            </form> -->
                             <a href="create.php?id=<?= htmlspecialchars($document['id']) ?>">起案</a>
-                            <!-- Viewボタン -->
-                            <!-- <form action="view.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <button type="submit">View</button>
-                            </form> -->
                             <a href="preview.php?id=<?= htmlspecialchars($document['id']) ?>">view</a>
-
-                            <!-- 編集ボタン -->
-                            <!-- <form action="edit.php" method="post" style="display:inline;"> -->
-                                <!-- <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <!-- <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <!-- <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <!-- <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
-                                <!-- <button type="submit">編集</button> -->
-                            <!-- </form> -->
-                            <!-- 削除ボタン -->
-                            <!-- <form action="delete.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <button type="submit">削除</button>
-                            </form> -->
-                            <!-- <a href="delete.php?id=<?= htmlspecialchars($document['id']) ?>">削除</a> -->
                             <a href="javascript:void(0);" onclick="confirmDeletion('delete.php?id=<?= htmlspecialchars($document['id'], ENT_QUOTES, 'UTF-8') ?>')">削除</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
+        </table>
     </main>
     <?php include_once __DIR__ . '/../common/_footer.html'; ?>
 </body>
-
 </html>
