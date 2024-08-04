@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../common/functions.php';
 
 // データベース接続
 $host = 'db';
@@ -21,7 +22,19 @@ try {
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
 }
-var_dump($documents)
+
+$id = 0;
+
+// パラメータが渡されていなけらば一覧画面に戻す
+$id = filter_input(INPUT_GET, 'id');
+if (empty($id)) {
+    header('Location: index.php');
+    exit;
+}
+
+$doc = find_doc_by_id($id);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -37,11 +50,11 @@ var_dump($documents)
                     <div class="doc_num">
                         <div class="num">
                             <label for="doc_num">文書番号:</label>
-                            <input class="name" type="text" name="doc_num" value="<?php echo $doc_num; ?>">
+                            <input class="name" type="text" name="doc_num" value="<?= h($doc['doc_num']); ?>">
                         </div>
                         <div class="date">
                             <label for="updated_at">文書の日付:</label>
-                            <input class="name" type="text" name="updated_at" value="<?php echo $updated_at ?>">
+                            <input class="name" type="text" name="updated_at" value="<?= h($doc['updated_at']); ?>">
                         </div>
                     </div>
                 </div>
@@ -49,21 +62,21 @@ var_dump($documents)
                     <div class="draft-name_wrap">
                         <div class="draft_date">
                             <label for="created_at">起案:</label>
-                            <input class="name" type="text" name="created_at" value="<?php echo $created_at ?>">
+                            <input class="name" type="text" name="created_at" value="<?= h($doc['created_at']); ?>">
                         </div>
                         <!-- <div class="name">担当者: </div> -->
                         <div class="maker_name">
                             <p>
                                 <label for="team">部署:</label>
-                                <input class="name" type="text" name="team" value="<?php echo $team ?>">
+                                <input class="name" type="text" name="team" value="<?= h($doc['team']); ?>">
                             </p>
                             <p>
                                 <label for="post">役職:</label>
-                                <input class="name" type="text" name="post" value="<?php echo $post ?>">
+                                <input class="name" type="text" name="post" value="<?= h($doc['post']); ?>">
                             </p>
                             <p>
                                 <label for="maker">担当者:</label>
-                                <input class="name" type="text" name="maker" value="<?php echo $maker ?>">
+                                <input class="name" type="text" name="maker" value="<?= h($doc['maker']); ?>">
                             </p>
                         </div>
                     </div>
@@ -94,17 +107,16 @@ var_dump($documents)
                 <div class="row_05">
                     <div class="title_wrap">
                         <label for="title">タイトル</label>
-                        <textarea type="text" name="title"><?php echo $title ?></textarea>
+                        <textarea type="text" name="title"><?= h($doc['title']); ?></textarea>
                     </div>
                     <div class="contents_wrap">
                         <label for="contents">内容</label>
-                        <textarea type="text" name="contents"><?php echo $contents ?></textarea>
+                        <textarea type="text" name="contents"><?= h($doc['contents']); ?></textarea>
                     </div>
                 </div>
                 <div class="link_wrap">
-                    <div class="btn"><input type="submit" value="登録" class="upload_submit"></div>
                     <div class="btn"><input type="submit" value="PDF化" class="upload_submit"></div>
-                    <div class="btn"><a href="/document/create.php">戻る</a></div>
+                    <div class="btn"><a href="/document/index.php">戻る</a></div>
                 </div>
             </form>
         </div>

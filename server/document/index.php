@@ -21,7 +21,7 @@ try {
 } catch (PDOException $e) {
     echo '接続失敗: ' . $e->getMessage();
 }
-var_dump($documents)
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -69,13 +69,13 @@ var_dump($documents)
                             <a href="preview.php?id=<?= htmlspecialchars($document['id']) ?>">view</a>
 
                             <!-- 編集ボタン -->
-                            <form action="edit.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                <button type="submit">編集</button>
-                            </form>
+                            <!-- <form action="edit.php" method="post" style="display:inline;"> -->
+                                <!-- <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="title" value="<?= htmlspecialchars($document['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="created_at" value="<?= htmlspecialchars($document['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>"> -->
+                                <!-- <button type="submit">編集</button> -->
+                            <!-- </form> -->
                             <!-- 削除ボタン -->
                             <!-- <form action="delete.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($document['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
@@ -84,7 +84,8 @@ var_dump($documents)
                                 <input type="hidden" name="maker" value="<?= htmlspecialchars($document['maker'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                 <button type="submit">削除</button>
                             </form> -->
-                            <a href="delete.php?id=<?= htmlspecialchars($document['id']) ?>">削除</a>
+                            <!-- <a href="delete.php?id=<?= htmlspecialchars($document['id']) ?>">削除</a> -->
+                            <a href="javascript:void(0);" onclick="confirmDeletion('delete.php?id=<?= htmlspecialchars($document['id'], ENT_QUOTES, 'UTF-8') ?>')">削除</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
