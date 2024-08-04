@@ -1,4 +1,7 @@
 @charset "UTF-8";
+/* ===================
+view.php
+=================== */
 
 /*コンテンツ全体に対する指定*/
 html {
@@ -34,16 +37,17 @@ body {
 }
 
 /* ＝＝＝＝＝main＝＝＝＝＝ */
-.form_wrap {
+.inner_height {
     width: 1000px;
-    margin: 0 auto;
-    height: 1415px;
-    /* height: calc(100vh - 60px) */
+    margin: 20px auto;
+    height: 1200px;
 }
 
 .form {
     height: 100%;
     display: block;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .row_01 {
@@ -61,11 +65,6 @@ body {
     height: 10%;
 }
 
-.row_02 .draft_date,
-.row_02 .name {
-    height: 50%;
-}
-
 .row_03 {
     height: 10%;
 }
@@ -75,15 +74,17 @@ body {
 }
 
 .row_05 {
-    height: 50%;
+    height: 60%;
 }
 
-.row_05 .tilte_wrap {
-    height: 10%;
+.row_05 .title_wrap {
+    height: 12%;
+    padding: 5px 10px;
 }
 
 .row_05 .contents_wrap {
     height: 90%;
+    padding: 5px 10px;
 }
 
 .row_01,
@@ -148,7 +149,7 @@ body {
 
 .row_04 .check_list li {
     width: 25%;
-    margin: 0 0 80px;
+    margin: 0 0 55px;
 }
 
 .row_04 .check_list li span {
@@ -163,14 +164,105 @@ body {
 .link_wrap {
     display: flex;
     height: 10%;
+    width: 1000px;
+    margin: 56px auto 40px;
+    justify-content: space-around;
 }
 
 .link_wrap .btn {
     width: 30%;
+    color: #fff;
+}
+
+.link_wrap .btn .upload_submit,
+.link_wrap .btn a {
+    width: 100%;
+    display: block;
     text-align: center;
+    padding: 20px 0;
+    background-color: #218838;
+}
+
+.link_wrap .btn a {
+    background-color: #eee;
+    color: #000;
 }
 
 .footer-text {
     text-align: center;
     display: block;
+}
+
+.title_fz {
+    font-size: 24px;
+}
+@media print {
+	.no-print {
+		display: none;
+	}
+}
+/* ===================
+create.php
+=================== */
+body.create_body {
+    background-color: #f4f4f4;
+}
+
+.create_body .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.create_body h1 {
+    text-align: center;
+    color: #333;
+}
+
+.create_body form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create_body label {
+    margin-top: 10px;
+    color: #555;
+}
+
+.create_body input[type="text"],
+.create_body input[type="date"],
+.create_body input[list] {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.create_body button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.create_body button:hover {
+    background-color: #218838;
+}
+
+.create_body .back_btn {
+    display: block;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.create_body .back_btn:hover {
+    text-decoration: underline;
 }

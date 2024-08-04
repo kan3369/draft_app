@@ -38,70 +38,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作成</title>
 </head>
-<style>
-    body {
-        background-color: #f4f4f4;
-    }
-
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    label {
-        margin-top: 10px;
-        color: #555;
-    }
-
-    input[type="text"],
-    input[type="date"],
-    input[list] {
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    button {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        text-align: center;
-    }
-
-    button:hover {
-        background-color: #218838;
-    }
-
-    a {
-        display: block;
-        text-align: center;
-        margin-top: 20px;
-        color: #007bff;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-</style>
 
 <body class="create_body">
     <?php include_once __DIR__ . '/../common/_header.php' ?>
@@ -153,9 +89,10 @@ try {
 
                 <button type="submit">OK</button>
             </form>
-            <a href="index.php">戻る</a>
+            <a class="back_btn" href="index.php">戻る</a>
         </div>
     </main>
+    <?php include_once __DIR__ . '/../common/_footer.html' ?>
 </body>
 
 </html>
