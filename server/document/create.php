@@ -42,7 +42,7 @@ try {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .container {
@@ -124,26 +124,33 @@ try {
         <div class="container">
             <h1>起案文書作成</h1>
             <form name="myForm" action="view.php" method="post" onsubmit="return validateForm()">
-                <label>起案番号</label>
-                <?php $currentDate = date('Ymd'); ?>
-                <input type="text" name="doc_num" value="<?php echo $currentDate; ?>">
-
-                <label>文章の日付</label>
-                <?php $currentDate = date('Y-m-d'); ?>
-                <input type="date" name="updated_at" value="<?php echo $currentDate; ?>">
-
-                <label>起案</label>
-                <?php $currentDate = date('Y-m-d'); ?>
-                <input type="date" name="created_at" value="<?php echo $currentDate; ?>">
-
-                <label>課</label>
-                <input name="team" list="team">
-                <datalist id="team">
-                    <?php foreach ($mens as $men) : ?>
-                        <option value="<?= htmlspecialchars($men['team']) ?>"><?= htmlspecialchars($men['team']) ?></option>
-                    <?php endforeach; ?>
-                </datalist>
                 <div class="col2_wrap">
+                    <div class="inner">
+                        <label>起案番号</label>
+                        <?php $currentDate = date('Ymd'); ?>
+                        <input type="text" name="doc_num" value="<?php echo $currentDate; ?>">
+                    </div>
+                    <div class="inner">
+                        <label>文章の日付</label>
+                        <?php $currentDate = date('Y-m-d'); ?>
+                        <input type="date" name="updated_at" value="<?php echo $currentDate; ?>">
+                    </div>
+                    <div class="inner">
+                        <label>起案</label>
+                        <?php $currentDate = date('Y-m-d'); ?>
+                        <input type="date" name="created_at" value="<?php echo $currentDate; ?>">
+                    </div>
+                </div>
+                <div class="col2_wrap">
+                    <div class="inner">
+                        <label>課</label>
+                        <input name="team" list="team">
+                        <datalist id="team">
+                            <?php foreach ($mens as $men) : ?>
+                                <option value="<?= htmlspecialchars($men['team']) ?>"><?= htmlspecialchars($men['team']) ?></option>
+                            <?php endforeach; ?>
+                        </datalist>
+                    </div>
                     <div class="inner">
                         <label>役職</label>
                         <input name="post" list="post">
@@ -167,7 +174,7 @@ try {
                 <input type="text" name="title" value="<?= htmlspecialchars($document['title']) ?>">
 
                 <label>内容</label>
-                <textarea id="message" name="contents" rows="7" cols="50"><?= htmlspecialchars($document['contents']) ?></textarea>
+                <textarea id="message" name="contents" rows="10" cols="50"><?= htmlspecialchars($document['contents']) ?></textarea>
                 <button type="submit">OK</button>
             </form>
             <a class="back_btn" href="index.php">戻る</a>

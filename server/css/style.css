@@ -415,10 +415,11 @@ body.create_body {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 .create_body .col2_wrap .inner {
-    width: 49%;
+    width: 30%;
 }
 
 .create_body .col2_wrap input {
