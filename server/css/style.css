@@ -47,7 +47,7 @@ body {
 }
 
 .row_01 {
-    height: 7%;
+    height: 5%;
 }
 
 .row_01 .num,
@@ -58,7 +58,7 @@ body {
 }
 
 .row_02 {
-    height: 7%;
+    height: 10%;
 }
 
 .row_02 .draft_date,
@@ -75,7 +75,7 @@ body {
 }
 
 .row_05 {
-    height: 60%;
+    height: 50%;
 }
 
 .row_05 .tilte_wrap {
@@ -98,6 +98,7 @@ body {
 .row_03 div,
 .row_04,
 .row_05 .tilte_wrap,
+.row_05 .title_wrap,
 .row_05 .contents_wrap {
     border: 1px solid #000;
 }
@@ -157,7 +158,16 @@ body {
 .row_05 textarea {
     display: block;
     width: 100%;
-    padding: 20px;
+}
+
+.link_wrap {
+    display: flex;
+    height: 10%;
+}
+
+.link_wrap .btn {
+    width: 30%;
+    text-align: center;
 }
 
 .footer-text {

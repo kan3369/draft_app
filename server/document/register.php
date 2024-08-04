@@ -1,32 +1,53 @@
 <?php
+require_once __DIR__ . '/../common/functions.php';
+require_once __DIR__ . '/../common/config.php';
+
 // データベース接続情報
-$host = 'db';
-$dbname = 'draft_db';
-$user = 'draft_admin';
-$pass = '1234';
+$dsn = 'mysql:host=db;dbname=draft_db;charset=utf8';
+$username = 'draft_admin';
+$password = '1234';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    // データベースに接続
+    $pdo = new PDO($dsn, $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'データベース接続失敗: ' . $e->getMessage();
-    exit();
-}
 
-// POSTデータの取得
-$title = $_POST['title'];
-$contents = $_POST['contents'];
+    // フォームから送信されたデータを取得
+    $id = $_POST['id'] ?? null;
+    $doc_num = $_POST['doc_num'] ?? null;
+    $maker = $_POST['maker'] ?? null;
+    $team = $_POST['team'] ?? null;
+    $post = $_POST['post'] ?? null;
+    // var_dump($maker);
+    $title = $_POST['title'] ?? null;
+    $contents = $_POST['contents'] ?? null;
 
-// データベースに登録
-try {
-    $stmt = $pdo->prepare("INSERT INTO doc (title, contents) VALUES (:title, :contents)");
+    // データを挿入するSQL文
+    $sql = "INSERT INTO doc (id, doc_num, maker, team, post, title, contents) 
+            VALUES (:id, :doc_num, :maker, :team, :post, :title, :contents)";
+
+    // SQL文を準備
+    $stmt = $pdo->prepare($sql);
+
+    // パラメータをバインド
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':doc_num', $doc_num); // doc_numパラメータをバインド
+    $stmt->bindParam(':maker', $maker);
+    $stmt->bindParam(':team', $team);
+    $stmt->bindParam(':post', $post);
     $stmt->bindParam(':title', $title);
     $stmt->bindParam(':contents', $contents);
+
+    // SQL文を実行
     $stmt->execute();
-    $message = "データが正常に登録されました。";
+
+    // 成功メッセージ
+    echo 'データが正常に登録されました。';
 } catch (PDOException $e) {
-    $message = 'データベース登録失敗: ' . $e->getMessage();
+    // エラーメッセージ
+    echo 'データベースエラー: ' . $e->getMessage();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -40,9 +61,8 @@ try {
 
 <body>
     <h1>登録完了</h1>
-    <p><?php echo htmlspecialchars($message); ?></p>
     <div>
-        <a href="create.php">新しい文書を作成する</a>
+        <a href="index.php">文書一覧を見る</a>
     </div>
 </body>
 
