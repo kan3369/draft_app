@@ -102,12 +102,23 @@ try {
             text-decoration: underline;
         }
     </style>
+    <script>
+        function validateForm() {
+            var maker = document.forms["myForm"]["maker"].value;
+            var team = document.forms["myForm"]["team"].value;
+            var post = document.forms["myForm"]["post"].value;
+            if (maker == "" || team == "" || post == "") {
+                alert("すべてのフィールドを入力してください。");
+                return false;
+            }
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
         <h1>起案者登録</h1>
-        <form action="user_register.php" method="post">
+        <form name="myForm" action="user_register.php" method="post" onsubmit="return validateForm()">
             <label>名前</label>
             <input name="maker" list="maker">
             <datalist id="maker">
@@ -136,3 +147,4 @@ try {
 </body>
 
 </html>
+
