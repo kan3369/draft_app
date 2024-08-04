@@ -352,7 +352,7 @@ body.create_body {
 }
 
 .create_body .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     background: #fff;
     padding: 20px;
@@ -409,6 +409,20 @@ body.create_body {
 
 .create_body .back_btn:hover {
     text-decoration: underline;
+}
+
+.create_body .col2_wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.create_body .col2_wrap .inner {
+    width: 49%;
+}
+
+.create_body .col2_wrap input {
+    width: 100%;
 }
 
 /* ===================

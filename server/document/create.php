@@ -143,28 +143,31 @@ try {
                         <option value="<?= htmlspecialchars($men['team']) ?>"><?= htmlspecialchars($men['team']) ?></option>
                     <?php endforeach; ?>
                 </datalist>
-
-                <label>役職</label>
-                <input name="post" list="post">
-                <datalist id="post">
-                    <?php foreach ($mens as $men) : ?>
-                        <option value="<?= htmlspecialchars($men['post']) ?>"><?= htmlspecialchars($men['post']) ?></option>
-                    <?php endforeach; ?>
-                </datalist>
-
-                <label>名前</label>
-                <input name="maker" list="maker">
-                <datalist id="maker">
-                    <?php foreach ($mens as $men) : ?>
-                        <option value="<?= htmlspecialchars($men['maker']) ?>"><?= htmlspecialchars($men['maker']) ?></option>
-                    <?php endforeach; ?>
-                </datalist>
-
+                <div class="col2_wrap">
+                    <div class="inner">
+                        <label>役職</label>
+                        <input name="post" list="post">
+                        <datalist id="post">
+                            <?php foreach ($mens as $men) : ?>
+                                <option value="<?= htmlspecialchars($men['post']) ?>"><?= htmlspecialchars($men['post']) ?></option>
+                            <?php endforeach; ?>
+                        </datalist>
+                    </div>
+                    <div class="inner">
+                        <label>名前</label>
+                        <input name="maker" list="maker">
+                        <datalist id="maker">
+                            <?php foreach ($mens as $men) : ?>
+                                <option value="<?= htmlspecialchars($men['maker']) ?>"><?= htmlspecialchars($men['maker']) ?></option>
+                            <?php endforeach; ?>
+                        </datalist>
+                    </div>
+                </div>
                 <label>タイトル</label>
                 <input type="text" name="title" value="<?= htmlspecialchars($document['title']) ?>">
 
                 <label>内容</label>
-                <textarea id="message" name="contents" rows="20" cols="50"><?= htmlspecialchars($document['contents']) ?></textarea>
+                <textarea id="message" name="contents" rows="7" cols="50"><?= htmlspecialchars($document['contents']) ?></textarea>
                 <button type="submit">OK</button>
             </form>
             <a class="back_btn" href="index.php">戻る</a>
